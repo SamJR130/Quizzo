@@ -50,7 +50,7 @@ public class PracticeFragment extends Fragment{
         view = inflater.inflate(R.layout.fragment_practice, container, false);
         genre = PracticeFragmentArgs.fromBundle(requireArguments()).getGenre();
 
-        ArrayList<Question> quizQuestions = Database.retrieveQuestionsWithGenre(genre);
+        ArrayList<Question> quizQuestions = Database.getDatabase().retrieveQuestionsWithGenre(genre);
         totalQues = quizQuestions.size();
 
         tvQuesAmt = view.findViewById(R.id.tv_ques_count);

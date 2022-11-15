@@ -4,7 +4,22 @@ import java.util.ArrayList;
 
 public class Database {
 
-    private static ArrayList<Question> questions;
+    private static Database myOneAndOnlyDBObject;
+    private ArrayList<Question> questions;
+
+    public static Database getDatabase()
+    {
+        if (myOneAndOnlyDBObject == null)
+        {
+            myOneAndOnlyDBObject = new Database();
+        }
+        return myOneAndOnlyDBObject;
+    }
+    private Database()
+    {
+        questions = new ArrayList<Question>();
+        loadQuestions();
+    }
 
     public ArrayList<Question> getQuestions()
     {
@@ -14,18 +29,13 @@ public class Database {
             loadQuestions();
         }return questions;
     }
-    public static void addQuestion(Question q)
+    public void addQuestion(Question q)
     {
         questions.add(q);
     }
 
-    public static ArrayList<Question> retrieveQuestionsWithGenre(String genre)
+    public ArrayList<Question> retrieveQuestionsWithGenre(String genre)
     {
-        if(questions == null)
-        {
-            questions = new ArrayList<Question>();
-            loadQuestions();
-        }
 
         if (genre.equals("All"))
         {
@@ -45,7 +55,7 @@ public class Database {
 
     }
 
-    private static void loadQuestions()
+    private void loadQuestions()
     {
         ArrayList<String> questionChoices1 = new ArrayList<String>();
         questionChoices1.add("Pacific");

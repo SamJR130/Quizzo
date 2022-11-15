@@ -74,7 +74,8 @@ public class AddQuestionFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Database.addQuestion(new Question(genre, question, options, answer, fact));
+
+                Database.getDatabase().addQuestion(new Question(genre, question, options, answer, fact));
                 Navigation.findNavController(view).navigate(R.id.action_addQuestionFragment_to_homeFragment);
             }
         });
